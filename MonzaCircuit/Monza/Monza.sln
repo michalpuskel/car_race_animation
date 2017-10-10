@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monza", "Assembly-CSharp-firstpass.csproj", "{D5DB69E0-94B5-BF47-FE64-0F2323858D55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monza", "Assembly-CSharp-Editor-firstpass.csproj", "{19029997-C67C-BC85-13F7-8F4633E2445A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D5DB69E0-94B5-BF47-FE64-0F2323858D55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5DB69E0-94B5-BF47-FE64-0F2323858D55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5DB69E0-94B5-BF47-FE64-0F2323858D55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5DB69E0-94B5-BF47-FE64-0F2323858D55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19029997-C67C-BC85-13F7-8F4633E2445A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19029997-C67C-BC85-13F7-8F4633E2445A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19029997-C67C-BC85-13F7-8F4633E2445A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19029997-C67C-BC85-13F7-8F4633E2445A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
