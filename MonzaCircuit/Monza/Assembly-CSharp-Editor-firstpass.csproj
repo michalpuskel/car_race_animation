@@ -52,10 +52,15 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Standard Assets\Editor\CrossPlatformInput\CrossPlatformInputInitialize.cs" />
+     <None Include="Assets\CritiasTreeSystem\Shader\SpeedTree_Master.shader" />
      <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
+     <None Include="Assets\CritiasTreeSystem\Shader\SpeedTreeBillboard_Batch.shader" />
+     <None Include="Assets\CritiasTreeSystem\Shader\SpeedTree_Include\SpeedTreeWind_Master.cginc" />
+     <None Include="Assets\CritiasTreeSystem\Shader\SpeedTree_Include\SpeedTreeCommon_Master.cginc" />
      <None Include="Assets\Standard Assets\Environment\Water (Basic)\Shaders\FXWaterBasic.shader" />
      <None Include="Assets\Standard Assets\Fonts\OpenSans\License!.txt" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
+     <None Include="Assets\CritiasTreeSystem\Shader\SpeedTree_Include\SpeedTreeVertex_Master.cginc" />
      <None Include="Assets\Standard Assets\Environment\Water\Water\Shaders\FXWaterPro.shader" />
      <None Include="Assets\Standard Assets\Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />
      <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
