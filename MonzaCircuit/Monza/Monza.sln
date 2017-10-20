@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monza", "Assembly-CSharp.cs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monza", "Assembly-CSharp-Editor-firstpass.csproj", "{19029997-C67C-BC85-13F7-8F4633E2445A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monza", "Assembly-CSharp-Editor.csproj", "{A859A41A-069C-F363-D22C-3DBF99003690}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{19029997-C67C-BC85-13F7-8F4633E2445A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19029997-C67C-BC85-13F7-8F4633E2445A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19029997-C67C-BC85-13F7-8F4633E2445A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A859A41A-069C-F363-D22C-3DBF99003690}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A859A41A-069C-F363-D22C-3DBF99003690}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A859A41A-069C-F363-D22C-3DBF99003690}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A859A41A-069C-F363-D22C-3DBF99003690}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
