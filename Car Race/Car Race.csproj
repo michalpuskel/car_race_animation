@@ -94,7 +94,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Car Engine\Car\Scripts\BrakeLight.cs" />
-    <Compile Include="Assets\Car Engine\Car\Scripts\CarAIControl.cs" />
     <Compile Include="Assets\Car Engine\Car\Scripts\CarAudio.cs" />
     <Compile Include="Assets\Car Engine\Car\Scripts\CarController.cs" />
     <Compile Include="Assets\Car Engine\Car\Scripts\CarSelfRighting.cs" />
@@ -103,24 +102,6 @@
     <Compile Include="Assets\Car Engine\Car\Scripts\SkidTrail.cs" />
     <Compile Include="Assets\Car Engine\Car\Scripts\Suspension.cs" />
     <Compile Include="Assets\Car Engine\Car\Scripts\WheelEffects.cs" />
-    <Compile Include="Assets\Car Engine\CrossPlatformInput\Scripts\AxisTouchButton.cs" />
-    <Compile Include="Assets\Car Engine\CrossPlatformInput\Scripts\ButtonHandler.cs" />
-    <Compile Include="Assets\Car Engine\CrossPlatformInput\Scripts\CrossPlatformInputManager.cs" />
-    <Compile Include="Assets\Car Engine\CrossPlatformInput\Scripts\InputAxisScrollbar.cs" />
-    <Compile Include="Assets\Car Engine\CrossPlatformInput\Scripts\Joystick.cs" />
-    <Compile Include="Assets\Car Engine\CrossPlatformInput\Scripts\MobileControlRig.cs" />
-    <Compile Include="Assets\Car Engine\CrossPlatformInput\Scripts\PlatformSpecific\MobileInput.cs" />
-    <Compile Include="Assets\Car Engine\CrossPlatformInput\Scripts\PlatformSpecific\StandaloneInput.cs" />
-    <Compile Include="Assets\Car Engine\CrossPlatformInput\Scripts\TiltInput.cs" />
-    <Compile Include="Assets\Car Engine\CrossPlatformInput\Scripts\TouchPad.cs" />
-    <Compile Include="Assets\Car Engine\CrossPlatformInput\Scripts\VirtualInput.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets\Car Engine\Car\CarGuidelines.txt" />
-    <None Include="Assets\Car Engine\Car\Shaders\DiffuseReflectiveShader.shader" />
-    <None Include="Assets\Car Engine\Car\Shaders\ReflectiveDiffuseSpec.shader" />
-    <None Include="Assets\Car Engine\Car\Shaders\ReflectiveDiffuseSpecTransp.shader" />
-    <None Include="Assets\Car Engine\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
