@@ -117,7 +117,6 @@
      <Compile Include="Assets\UnityStandardAssets\CrossPlatformInput\Scripts\PlatformSpecific\MobileInput.cs" />
      <Compile Include="Assets\UnityStandardAssets\CrossPlatformInput\Scripts\PlatformSpecific\StandaloneInput.cs" />
      <Compile Include="Assets\UnityStandardAssets\CrossPlatformInput\Scripts\TiltInput.cs" />
-     <Compile Include="Assets\UnityStandardAssets\CrossPlatformInput\Scripts\TouchPad.cs" />
      <Compile Include="Assets\UnityStandardAssets\CrossPlatformInput\Scripts\VirtualInput.cs" />
      <Compile Include="Assets\UnityStandardAssets\Environment\Water (Basic)\Scripts\WaterBasic.cs" />
      <Compile Include="Assets\UnityStandardAssets\Environment\Water\Water\Scripts\Displace.cs" />
