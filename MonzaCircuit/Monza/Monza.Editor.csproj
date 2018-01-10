@@ -144,6 +144,7 @@
     <None Include="Assets\CritiasTreeSystem\Shader\SpeedTree_Include\SpeedTreeVertex_Master.cginc" />
     <None Include="Assets\CritiasTreeSystem\Shader\SpeedTree_Include\SpeedTreeWind_Master.cginc" />
     <None Include="Assets\CritiasTreeSystem\Shader\SpeedTree_Master.shader" />
+    <None Include="Assets\Models\Driver\L3 Read Me.txt" />
     <None Include="Assets\RainMaker\Prefab\RainShader.shader" />
     <None Include="Assets\RainMaker\Readme.txt" />
     <None Include="Assets\UnityStandardAssets\Characters\FirstPerson\FirstPersonCharacterGuidelines.txt" />
