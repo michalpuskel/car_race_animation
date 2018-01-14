@@ -1,3 +1,5 @@
+// Upgrade NOTE: upgraded instancing buffer 'Fading' to new syntax.
+
 // Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 
 #ifndef SPEEDTREE_COMMON_INCLUDED
@@ -35,10 +37,11 @@ struct Input
 #define mainTexUV interpolator1.xy
 sampler2D _MainTex;
 
-UNITY_INSTANCING_CBUFFER_START(Fading)
+UNITY_INSTANCING_BUFFER_START(Fading)
 	// UNITY_DEFINE_INSTANCED_PROP(half, master_LODFadeFull)
 	UNITY_DEFINE_INSTANCED_PROP(half, master_LODFadeDetail)
-UNITY_INSTANCING_CBUFFER_END
+#define master_LODFadeDetail_arr Fading
+UNITY_INSTANCING_BUFFER_END(Fading)
 
 #ifdef GEOM_TYPE_BRANCH_DETAIL
 	#define Detail interpolator2
@@ -103,7 +106,7 @@ void SpeedTreeVert(inout SpeedTreeVB IN, out Input OUT)
 			OUT.Detail.z = 2.5f; // stay out of Blend's .z range
 	#endif
 
-	OffsetSpeedTreeVertex(IN, UNITY_ACCESS_INSTANCED_PROP(master_LODFadeDetail));
+	OffsetSpeedTreeVertex(IN, UNITY_ACCESS_INSTANCED_PROP(master_LODFadeDetail_arr, master_LODFadeDetail));
 }
 
 // Fragment processing

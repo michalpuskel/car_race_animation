@@ -85,7 +85,7 @@ Shader "Critias/Nature/SpeedTree Master"
 
 					// TODO: See how important this shadowcaster guy is
 					// OffsetSpeedTreeVertex(v, master_LODFade.x);
-					OffsetSpeedTreeVertex(v, UNITY_ACCESS_INSTANCED_PROP(master_LODFadeDetail));
+					OffsetSpeedTreeVertex(v, UNITY_ACCESS_INSTANCED_PROP(master_LODFadeDetail_arr, master_LODFadeDetail));
 
 					TRANSFER_SHADOW_CASTER_NORMALOFFSET(o)
 					UNITY_TRANSFER_DITHER_CROSSFADE_HPOS(o, o.pos)

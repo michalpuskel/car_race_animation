@@ -33,7 +33,7 @@ namespace Scripts
 
                 FPS.SetActive(true);
                 FerrariCam.SetActive(false);
-                RedBullCam.SetActive(false);
+                RedBullCam.SetActive(false);                
             }
             else if (Input.GetAxis("Input_1") > 0)
             {
@@ -42,7 +42,7 @@ namespace Scripts
 
                 FPS.SetActive(false);
                 FerrariCam.SetActive(false);
-                RedBullCam.SetActive(true);
+                RedBullCam.SetActive(true);                
             }
             else if (Input.GetAxis("Input_2") > 0)
             {
@@ -51,8 +51,14 @@ namespace Scripts
 
                 FPS.SetActive(false);
                 FerrariCam.SetActive(true);
-                RedBullCam.SetActive(false);
+                RedBullCam.SetActive(false);                
             }
+
+            /*
+            FirstPersonController fps = GameObject.FindGameObjectWithTag("FPS").GetComponent<FirstPersonController>();
+            fps.m_Camera = Camera.main;
+            fps.m_OriginalCameraPosition = fps.m_Camera.transform.localPosition;
+            */
         }
     }
 

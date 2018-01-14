@@ -12,6 +12,7 @@ TagManager:
   - RedBull
   - FerrariCam
   - RedBullCam
+  - recordingText
   layers:
   - Default
   - TransparentFX
