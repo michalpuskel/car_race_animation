@@ -3,6 +3,7 @@ using UnityEngine;
 
 using Scripts;
 using System.IO;
+using System.Collections;
 
 namespace CarEngine.Car
 {
@@ -12,7 +13,7 @@ namespace CarEngine.Car
         public CustomInputController.Controllable CarType;
 
         public Boolean Recording = false;
-        public Boolean PlayAnimation;
+        public Boolean PlayAnimation = false;
 
         private CarController m_Car; // the car controller we want to use
 
@@ -22,13 +23,26 @@ namespace CarEngine.Car
         private Vector3 m_OriginalCameraPosition;
         private Quaternion m_OriginalCameraRotation;
 
-        private StreamWriter animation_log;        
+        public StreamWriter animation_log;        
 
         private GameObject uiText;
-        private string filePath;
-        private string filePathPlay;
+        public string filePath;
+        public string filePathPlay;
 
-        private StreamReader animation_play_log;
+        public StreamReader animation_play_log;
+
+        private UInt64 frameCounter = 0;
+
+        private float h;
+        private float v;
+        private float handbrake;
+
+        // /////////////////////////////
+
+              
+        private float timeFixed = 0.0f;
+        private float time = 0.0f;
+        public float interpolationPeriod = 0.01f;
 
         void Start()
         {
@@ -55,88 +69,235 @@ namespace CarEngine.Car
             }
             File.Copy(filePath, filePathPlay);
 
-            animation_play_log = new StreamReader(filePathPlay);
+            // animation_play_log = new StreamReader(filePathPlay);
+
+            //StartCoroutine("DoCheck");            
         }
 
         private void Awake()
         {
             // get the car controller
-            m_Car = GetComponent<CarController>();
+            m_Car = GetComponent<CarController>();            
+        }          
+
+        private void Update()
+        {
+
+            /*
+            time += Time.deltaTime;
+
+            if (time >= interpolationPeriod)
+            {
+                time = time - interpolationPeriod;
+
+                // execute block of code here
+                */
+
+                if (m_InputController.InputIndex != CarType)
+                {
+                    return;
+                }
+
+                if (Input.GetKeyDown("p"))
+                {
+                    Recording = !Recording;
+
+                    if (!Recording)
+                    {
+                        animation_log.Close();
+                    }
+                    else
+                    {
+                        animation_log = new StreamWriter(filePath, append: true);
+                    }
+                }
+
+                if (Input.GetKeyDown("b"))
+                {
+                    PlayAnimation = true;
+                    animation_play_log = new StreamReader(filePathPlay);
+                }
+
+                m_Camera.transform.localPosition = m_OriginalCameraPosition;
+                m_Camera.transform.localRotation = m_OriginalCameraRotation;
+
+                // pass the input to the car!
+
+                ///////////////////
+
+                
+
+                string hh = null;
+                string vv = null;
+                string bb = null;
+                string ll = null;
+
+                if (PlayAnimation)
+                {
+                    // animation_play_log = new StreamReader(filePathPlay);
+
+                    hh = animation_play_log.ReadLine();
+                    vv = animation_play_log.ReadLine();
+                    bb = animation_play_log.ReadLine();
+                    ll = animation_play_log.ReadLine();
+
+                    if (ll == null)
+                    {
+                        PlayAnimation = false;
+                        animation_play_log.Close();
+                    }
+                }
+                else
+                {
+                    //Recording = true;
+                    //animation_log = new StreamWriter(filePath, append: true);
+                }
+
+                h = (PlayAnimation && hh != null) ? float.Parse(hh) : Input.GetAxis("Horizontal");
+                v = (PlayAnimation && vv != null) ? float.Parse(vv) : Input.GetAxis("Vertical");
+
+                handbrake = (PlayAnimation && bb != null) ? float.Parse(bb) : Input.GetAxis("Jump");
+
+                if (Recording)
+                {
+                    // animation_log = new StreamWriter(filePath, append: true);
+
+                    animation_log.WriteLine(h);
+                    animation_log.WriteLine(v);
+                    animation_log.WriteLine(handbrake);
+                    animation_log.WriteLine();
+
+                    frameCounter++;
+
+                    // animation_log.Close();        
+
+
+                    Debug.Log("Horizontal " + h);
+                    Debug.Log("Vertical " + v);
+                    Debug.Log("Handbrake " + handbrake);
+                }
+
+                if (Recording)
+                {
+                    uiText.GetComponent<UnityEngine.UI.Text>().text = "Recording " + frameCounter;
+                }
+                else if (PlayAnimation)
+                {
+                    uiText.GetComponent<UnityEngine.UI.Text>().text = "PLAYing";
+                }
+                else
+                {
+                    uiText.GetComponent<UnityEngine.UI.Text>().text = frameCounter.ToString();
+                }
+
+                
+
+                /////////////////////
+
+                m_Car.Move(h, v, v, handbrake);
+
+            /*
+            } / time if
+
+            */
         }
 
-
+        /*
         private void FixedUpdate()
         {
-            if (m_InputController.InputIndex != CarType) {
-                return;
-            }
+            timeFixed += Time.deltaTime;
 
-            if (Input.GetKeyDown("p"))
+            if (timeFixed >= interpolationPeriod)
             {
-                Recording = !Recording;
-            }
-     
+                timeFixed = timeFixed - interpolationPeriod;
 
-            if (Recording)
-            {
-                uiText.GetComponent<UnityEngine.UI.Text>().text = "Recording";
-            }
-            else
-            {
-                uiText.GetComponent<UnityEngine.UI.Text>().text = "";                
-            }
+                // execute block of code here
 
-            m_Camera.transform.localPosition = m_OriginalCameraPosition;
-            m_Camera.transform.localRotation = m_OriginalCameraRotation;
-
-            // pass the input to the car!
-
-            string hh = null;
-            string vv = null;
-            string bb = null;
-            string ll = null;
-
-            if (PlayAnimation)
-            {
-                // animation_play_log = new StreamReader(filePathPlay);
-
-                hh = animation_play_log.ReadLine();
-                vv = animation_play_log.ReadLine();
-                bb = animation_play_log.ReadLine();
-                ll = animation_play_log.ReadLine();
-
-                if (ll == null)
+                if (m_InputController.InputIndex != CarType)
                 {
-                    PlayAnimation = false;
-                    animation_play_log.Close();
-                }                
+                    return;
+                }
+
+                m_Car.Move(h, v, v, handbrake);
             }            
-
-            float h = (PlayAnimation && hh != null) ? float.Parse(hh) : Input.GetAxis("Horizontal");
-            float v = (PlayAnimation && vv != null) ? float.Parse(vv) : Input.GetAxis("Vertical");
-
-            float handbrake = (PlayAnimation && bb != null) ? float.Parse(bb) : Input.GetAxis("Jump");            
-
-            if (Recording)
-            {
-                animation_log = new StreamWriter(filePath, append: true);
-
-                animation_log.WriteLine(h);
-                animation_log.WriteLine(v);
-                animation_log.WriteLine(handbrake);
-                animation_log.WriteLine();
-
-                animation_log.Close();
-
-
-
-                Debug.Log("Horizontal " + h);
-                Debug.Log("Vertical " + v);
-                Debug.Log("Handbrake " + handbrake);
-            }            
-
-            m_Car.Move(h, v, v, handbrake);
         }
+        */
+
+        
+            /*
+        private IEnumerator DoCheck()
+        {
+            for (; ; )
+            {
+                // execute block of code here
+
+                string hh = null;
+                string vv = null;
+                string bb = null;
+                string ll = null;
+
+                if (PlayAnimation)
+                {
+                    // animation_play_log = new StreamReader(filePathPlay);
+
+                    hh = animation_play_log.ReadLine();
+                    vv = animation_play_log.ReadLine();
+                    bb = animation_play_log.ReadLine();
+                    ll = animation_play_log.ReadLine();
+
+                    if (ll == null)
+                    {
+                        PlayAnimation = false;
+                        animation_play_log.Close();
+                    }
+                }
+
+                h = (PlayAnimation && hh != null) ? float.Parse(hh) : Input.GetAxis("Horizontal");
+                v = (PlayAnimation && vv != null) ? float.Parse(vv) : Input.GetAxis("Vertical");
+
+                handbrake = (PlayAnimation && bb != null) ? float.Parse(bb) : Input.GetAxis("Jump");
+
+                if (Recording)
+                {
+                    // animation_log = new StreamWriter(filePath, append: true);
+
+                    animation_log.WriteLine(h);
+                    animation_log.WriteLine(v);
+                    animation_log.WriteLine(handbrake);
+                    animation_log.WriteLine();
+
+                    frameCounter++;
+
+                    // animation_log.Close();        
+
+
+                    Debug.Log("Horizontal " + h);
+                    Debug.Log("Vertical " + v);
+                    Debug.Log("Handbrake " + handbrake);
+                }
+
+                if (Recording)
+                {
+                    uiText.GetComponent<UnityEngine.UI.Text>().text = "Recording " + frameCounter;
+                }
+                else if (PlayAnimation)
+                {
+                    uiText.GetComponent<UnityEngine.UI.Text>().text = "PLAYing";
+                }
+                else
+                {
+                    uiText.GetComponent<UnityEngine.UI.Text>().text = frameCounter.ToString();
+                }
+
+                m_Car.Move(h, v, v, handbrake);
+
+                /////////////////////////////////////////////////////////////////////////////////////
+
+                yield return new WaitForSeconds(interpolationPeriod);
+            }
+        }
+        
+    */
 
         ~CarUserControl()
         {

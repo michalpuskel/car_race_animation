@@ -37797,6 +37797,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CarType: 2
+  Recording: 0
+  PlayAnimation: 0
+  filePath: 
+  filePathPlay: 
+  interpolationPeriod: 0.01
 --- !u!114 &114359959833112104
 MonoBehaviour:
   m_ObjectHideFlags: 1

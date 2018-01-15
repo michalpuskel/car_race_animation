@@ -18022,7 +18022,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -18030,11 +18030,11 @@ Camera:
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
+  m_HDR: 0
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!23 &23002751219859566
@@ -36388,6 +36388,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CarType: 1
+  Recording: 0
+  PlayAnimation: 0
+  interpolationPeriod: 0.01
 --- !u!114 &114273437723182398
 MonoBehaviour:
   m_ObjectHideFlags: 1

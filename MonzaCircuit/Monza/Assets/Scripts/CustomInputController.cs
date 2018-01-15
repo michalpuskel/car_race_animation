@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using CarEngine.Car;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 using UnityStandardAssets.Characters.FirstPerson;
@@ -21,6 +23,8 @@ namespace Scripts
             FPS = GameObject.FindGameObjectWithTag("FPS");
             FerrariCam = GameObject.FindGameObjectWithTag("FerrariCam");
             RedBullCam = GameObject.FindGameObjectWithTag("RedBullCam");
+
+            StartCoroutine(SwitchCar());
         }
 
         // Update is called once per frame
@@ -59,6 +63,44 @@ namespace Scripts
             fps.m_Camera = Camera.main;
             fps.m_OriginalCameraPosition = fps.m_Camera.transform.localPosition;
             */
+        }
+
+        IEnumerator SwitchCar()
+        {            
+            yield return new WaitForSeconds(2);
+
+            InputIndex = Controllable.Ferrari;
+            Debug.Log("Ferrari");
+
+            FPS.SetActive(false);
+            FerrariCam.SetActive(true);
+            RedBullCam.SetActive(false);
+
+            StartCoroutine(StartRecord());
+        }
+
+        IEnumerator StartRecord()
+        {
+            yield return new WaitForSeconds(1);
+
+            var auto = GameObject.FindGameObjectWithTag("Ferrari").GetComponent<CarUserControl>();
+
+
+            var xor = true;
+
+            ///////////////////
+
+            if (xor)
+            {           
+                auto.Recording = true;        
+                auto.animation_log = new StreamWriter(auto.filePath, append: true);
+            }           
+            else
+            {
+                auto.PlayAnimation = true;
+                auto.animation_play_log = new StreamReader(auto.filePathPlay);
+            }
+            
         }
     }
 
