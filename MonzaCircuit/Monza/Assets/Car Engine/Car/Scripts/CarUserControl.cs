@@ -42,7 +42,8 @@ namespace CarEngine.Car
               
         private float timeFixed = 0.0f;
         private float time = 0.0f;
-        public float interpolationPeriod = 0.01f;
+
+        public float interpolationPeriod = 0.1f;
 
         void Start()
         {
@@ -71,17 +72,19 @@ namespace CarEngine.Car
 
             // animation_play_log = new StreamReader(filePathPlay);
 
-            //StartCoroutine("DoCheck");            
+            // StartCoroutine("DoCheck");            
         }
 
         private void Awake()
         {
             // get the car controller
+
             m_Car = GetComponent<CarController>();            
         }          
 
         private void Update()
         {
+
 
             /*
             time += Time.deltaTime;
@@ -89,9 +92,10 @@ namespace CarEngine.Car
             if (time >= interpolationPeriod)
             {
                 time = time - interpolationPeriod;
+                */
 
                 // execute block of code here
-                */
+                
 
                 if (m_InputController.InputIndex != CarType)
                 {
@@ -165,7 +169,7 @@ namespace CarEngine.Car
                     animation_log.WriteLine(h);
                     animation_log.WriteLine(v);
                     animation_log.WriteLine(handbrake);
-                    animation_log.WriteLine();
+                    animation_log.WriteLine("          " + frameCounter.ToString());
 
                     frameCounter++;
 
@@ -183,23 +187,24 @@ namespace CarEngine.Car
                 }
                 else if (PlayAnimation)
                 {
-                    uiText.GetComponent<UnityEngine.UI.Text>().text = "PLAYing";
+                    uiText.GetComponent<UnityEngine.UI.Text>().text = "PLAYing " + ll.Substring(10, ll.Length - 10);
                 }
                 else
                 {
                     uiText.GetComponent<UnityEngine.UI.Text>().text = frameCounter.ToString();
                 }
 
+            
                 
 
                 /////////////////////
 
                 m_Car.Move(h, v, v, handbrake);
 
-            /*
-            } / time if
+            
+          //  } // time if
 
-            */
+           
         }
 
         /*
@@ -289,15 +294,15 @@ namespace CarEngine.Car
                     uiText.GetComponent<UnityEngine.UI.Text>().text = frameCounter.ToString();
                 }
 
-                m_Car.Move(h, v, v, handbrake);
+                //m_Car.Move(h, v, v, handbrake);
 
                 /////////////////////////////////////////////////////////////////////////////////////
 
                 yield return new WaitForSeconds(interpolationPeriod);
             }
-        }
+        }*/
         
-    */
+    
 
         ~CarUserControl()
         {

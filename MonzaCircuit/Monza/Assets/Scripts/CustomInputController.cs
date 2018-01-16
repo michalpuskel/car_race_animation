@@ -86,7 +86,7 @@ namespace Scripts
             var auto = GameObject.FindGameObjectWithTag("Ferrari").GetComponent<CarUserControl>();
 
 
-            var xor = true;
+            var xor = !true;
 
             ///////////////////
 
