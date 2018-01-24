@@ -13,6 +13,7 @@ TagManager:
   - FerrariCam
   - RedBullCam
   - recordingText
+  - WaterFX
   layers:
   - Default
   - TransparentFX

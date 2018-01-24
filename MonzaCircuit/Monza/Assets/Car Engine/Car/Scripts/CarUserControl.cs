@@ -37,6 +37,9 @@ namespace CarEngine.Car
         private float v;
         private float handbrake;
 
+        private Rigidbody m_Rigidbody;
+        private GameObject waterFX;
+
         // /////////////////////////////
 
               
@@ -47,6 +50,17 @@ namespace CarEngine.Car
 
         void Start()
         {
+            m_Rigidbody = GetComponent<Rigidbody>();
+
+            foreach (Transform child in transform) {
+                if (child.CompareTag("WaterFX")) {
+                    waterFX = child.gameObject;
+                    break;
+                }
+            } 
+
+            
+
             m_InputController = (CustomInputController)GameObject.FindGameObjectWithTag("InputController").GetComponent(typeof(CustomInputController));
 
             m_Camera = Camera.main;
@@ -94,10 +108,19 @@ namespace CarEngine.Car
                 time = time - interpolationPeriod;
                 */
 
-                // execute block of code here
-                
+            // execute block of code here
 
-                if (m_InputController.InputIndex != CarType)
+            if (m_Rigidbody.velocity.magnitude * 2.23693629f > 35)
+            {
+                waterFX.SetActive(true);
+            }
+            else
+            {
+                waterFX.SetActive(false);
+            }
+
+
+            if (m_InputController.InputIndex != CarType)
                 {
                     return;
                 }
@@ -184,22 +207,24 @@ namespace CarEngine.Car
                 if (Recording)
                 {
                     uiText.GetComponent<UnityEngine.UI.Text>().text = "Recording " + frameCounter;
-                }
+            }
                 else if (PlayAnimation)
                 {
                     uiText.GetComponent<UnityEngine.UI.Text>().text = "PLAYing " + ll.Substring(10, ll.Length - 10);
-                }
+            }
                 else
                 {
                     uiText.GetComponent<UnityEngine.UI.Text>().text = frameCounter.ToString();
-                }
+            }
 
             
                 
 
-                /////////////////////
+                /////////////////////        
 
                 m_Car.Move(h, v, v, handbrake);
+
+                //////                
 
             
           //  } // time if
