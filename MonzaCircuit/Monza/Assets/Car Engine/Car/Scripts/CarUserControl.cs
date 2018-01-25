@@ -4,6 +4,7 @@ using UnityEngine;
 using Scripts;
 using System.IO;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace CarEngine.Car
 {
@@ -40,6 +41,8 @@ namespace CarEngine.Car
         private Rigidbody m_Rigidbody;
         private GameObject waterFX;
 
+        private List<EllipsoidParticleEmitter> speedFXs;
+
         // /////////////////////////////
 
               
@@ -50,11 +53,22 @@ namespace CarEngine.Car
 
         void Start()
         {
+            speedFXs = new List<EllipsoidParticleEmitter>();
+
             m_Rigidbody = GetComponent<Rigidbody>();
 
             foreach (Transform child in transform) {
                 if (child.CompareTag("WaterFX")) {
                     waterFX = child.gameObject;
+
+                    foreach(Transform steamSpray in waterFX.transform)
+                    {
+                        foreach (Transform waterChild in steamSpray.transform)
+                        {
+                            speedFXs.Add(waterChild.GetComponent<EllipsoidParticleEmitter>());
+                        }
+                    }                    
+
                     break;
                 }
             } 
@@ -110,7 +124,8 @@ namespace CarEngine.Car
 
             // execute block of code here
 
-            if (m_Rigidbody.velocity.magnitude * 2.23693629f > 35)
+            /*
+            if (m_Rigidbody.velocity.magnitude * 2.23693629f > 5)
             {
                 waterFX.SetActive(true);
             }
@@ -118,6 +133,14 @@ namespace CarEngine.Car
             {
                 waterFX.SetActive(false);
             }
+            */
+            
+            
+            foreach (EllipsoidParticleEmitter speedFX in speedFXs)
+            {
+                speedFX.maxEmission = speedFX.minEmission * ((m_Rigidbody.velocity.magnitude * 2.23693629f - 20) / 100);
+            }
+            
 
 
             if (m_InputController.InputIndex != CarType)
@@ -207,15 +230,15 @@ namespace CarEngine.Car
                 if (Recording)
                 {
                     uiText.GetComponent<UnityEngine.UI.Text>().text = "Recording " + frameCounter;
-            }
+                }
                 else if (PlayAnimation)
                 {
                     uiText.GetComponent<UnityEngine.UI.Text>().text = "PLAYing " + ll.Substring(10, ll.Length - 10);
-            }
+                }
                 else
                 {
                     uiText.GetComponent<UnityEngine.UI.Text>().text = frameCounter.ToString();
-            }
+                }
 
             
                 

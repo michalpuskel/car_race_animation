@@ -14,6 +14,7 @@ TagManager:
   - RedBullCam
   - recordingText
   - WaterFX
+  - SpeedFX
   layers:
   - Default
   - TransparentFX
