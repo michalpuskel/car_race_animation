@@ -15,6 +15,7 @@ TagManager:
   - recordingText
   - WaterFX
   - SpeedFX
+  - FireWorksMaster
   layers:
   - Default
   - TransparentFX

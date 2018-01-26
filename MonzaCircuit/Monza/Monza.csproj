@@ -340,6 +340,7 @@
     <Compile Include="Assets\CritiasTreeSystem\Code\TreeSystem.cs" />
     <Compile Include="Assets\CritiasTreeSystem\Code\Utils\TerrainUtils.cs" />
     <Compile Include="Assets\CritiasTreeSystem\Code\Utils\TUtils.cs" />
+    <Compile Include="Assets\FireWorksTriggerController.cs" />
     <Compile Include="Assets\InputController.cs" />
     <Compile Include="Assets\RainMaker\Demo\DemoScript.cs" />
     <Compile Include="Assets\RainMaker\Demo\DemoScript2D.cs" />
