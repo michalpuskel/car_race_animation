@@ -7,9 +7,34 @@ using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 
 namespace Scripts
-{
+{  
     public class CustomInputController : MonoBehaviour
     {
+        /**************************************************************/
+        /**************************************************************/
+        /**************************************************************/
+        /**************************************************************/
+        /**************************************************************/
+
+        /// <summary>
+        /// POZOR TODO DOLEZITE        
+        /// </summary>
+        /// 
+
+        private const bool NAHRAVANIE_REDBULL = true;   // Tomas toto je 1. z 2 miest kde treba zmenit -> true / !true :D
+
+        /// <summary>
+        /// POZOR TODO DOLEZITE
+        /// </summary>
+        /// 
+
+        /**************************************************************/
+        /**************************************************************/
+        /**************************************************************/
+        /**************************************************************/
+        /**************************************************************/
+        /**************************************************************/
+
         public enum Controllable { FPS, RedBull, Ferrari };
         public Controllable InputIndex;
         private GameObject FPS;
@@ -30,6 +55,11 @@ namespace Scripts
         // Update is called once per frame
         void Update()
         {
+            if (NAHRAVANIE_REDBULL)
+            {
+                return;
+            }
+
             if (Input.GetAxis("Input_0") > 0)
             {
                 InputIndex = Controllable.FPS;                
@@ -69,12 +99,24 @@ namespace Scripts
         {            
             yield return new WaitForSeconds(2);
 
-            InputIndex = Controllable.Ferrari;
-            Debug.Log("Ferrari");
+            if (NAHRAVANIE_REDBULL)
+            {
+                InputIndex = Controllable.RedBull;
+                Debug.Log("RedBull");
 
-            FPS.SetActive(false);
-            FerrariCam.SetActive(true);
-            RedBullCam.SetActive(false);
+                FPS.SetActive(false);
+                FerrariCam.SetActive(false);
+                RedBullCam.SetActive(true);
+            } 
+            else
+            {
+                InputIndex = Controllable.Ferrari;
+                Debug.Log("Ferrari");
+
+                FPS.SetActive(false);
+                FerrariCam.SetActive(true);
+                RedBullCam.SetActive(false);
+            }                       
 
             StartCoroutine(StartRecord());
         }
@@ -83,8 +125,8 @@ namespace Scripts
         {
             yield return new WaitForSeconds(1);
 
-            var auto = GameObject.FindGameObjectWithTag("Ferrari").GetComponent<CarUserControl>();
 
+            var auto = GameObject.FindGameObjectWithTag("Ferrari").GetComponent<CarUserControl>();
 
             var xor = !true;
 
@@ -99,6 +141,14 @@ namespace Scripts
             {
                 auto.PlayAnimation = true;
                 auto.animation_play_log = new StreamReader(auto.filePathPlay);
+            }
+
+            if (NAHRAVANIE_REDBULL)
+            {
+                var auto2 = GameObject.FindGameObjectWithTag("RedBull").GetComponent<CarUserControl>();
+
+                auto2.PlayAnimation = true;
+                auto2.animation_play_log = new StreamReader(auto2.filePathPlay);
             }
             
         }

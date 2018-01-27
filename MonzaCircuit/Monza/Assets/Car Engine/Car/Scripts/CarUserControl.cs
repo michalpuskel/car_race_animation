@@ -11,6 +11,32 @@ namespace CarEngine.Car
     [RequireComponent(typeof (CarController))]
     public class CarUserControl : MonoBehaviour
     {
+        /**************************************************************/
+        /**************************************************************/
+        /**************************************************************/
+        /**************************************************************/
+        /**************************************************************/
+
+        /// <summary>
+        /// POZOR TODO DOLEZITE        
+        /// </summary>
+        /// 
+
+        private const bool NAHRAVANIE_REDBULL = true;   // Tomas toto je 2. z 2 miest kde treba zmenit -> true / !true :D
+
+        /// <summary>
+        /// POZOR TODO DOLEZITE
+        /// </summary>
+        /// 
+
+        /**************************************************************/
+        /**************************************************************/
+        /**************************************************************/
+        /**************************************************************/
+        /**************************************************************/
+        /**************************************************************/
+
+
         public CustomInputController.Controllable CarType;
 
         public Boolean Recording = false;
@@ -143,7 +169,7 @@ namespace CarEngine.Car
             
 
 
-            if (m_InputController.InputIndex != CarType)
+            if (m_InputController.InputIndex != CarType && !NAHRAVANIE_REDBULL)
                 {
                     return;
                 }
@@ -203,12 +229,50 @@ namespace CarEngine.Car
                     //animation_log = new StreamWriter(filePath, append: true);
                 }
 
-                h = (PlayAnimation && hh != null) ? float.Parse(hh) : Input.GetAxis("Horizontal");
-                v = (PlayAnimation && vv != null) ? float.Parse(vv) : Input.GetAxis("Vertical");
+                if (PlayAnimation)
+                {
+                    h = float.Parse(hh);
+                    v = float.Parse(vv);
 
-                handbrake = (PlayAnimation && bb != null) ? float.Parse(bb) : Input.GetAxis("Jump");
+                    handbrake = float.Parse(bb);
+                }
+                else if (NAHRAVANIE_REDBULL)
+                {
+                    if (CarType == CustomInputController.Controllable.Ferrari)
+                    {
+                        h = 0;
+                        v = 0;
 
-                if (Recording)
+                        handbrake = 0;
+                    }
+                    else
+                    {
+                        h = Input.GetAxis("Horizontal");
+                        v = Input.GetAxis("Vertical");
+
+                        handbrake = Input.GetAxis("Jump");
+                    }
+                }
+                else
+                {
+                // not NAHRAVANIE_REDBULL
+                    if (CarType == CustomInputController.Controllable.RedBull)
+                    {
+                        h = 0;
+                        v = 0;
+
+                        handbrake = 0;
+                    }
+                    else
+                    {
+                        h = Input.GetAxis("Horizontal");
+                        v = Input.GetAxis("Vertical");
+
+                        handbrake = Input.GetAxis("Jump");
+                    }
+                }                
+
+                if (Recording && !NAHRAVANIE_REDBULL || Recording && NAHRAVANIE_REDBULL && CarType == CustomInputController.Controllable.RedBull)
                 {
                     // animation_log = new StreamWriter(filePath, append: true);
 
@@ -227,18 +291,38 @@ namespace CarEngine.Car
                     Debug.Log("Handbrake " + handbrake);
                 }
 
-                if (Recording)
+                if (NAHRAVANIE_REDBULL)
                 {
-                    uiText.GetComponent<UnityEngine.UI.Text>().text = "Recording " + frameCounter;
-                }
-                else if (PlayAnimation)
-                {
-                    uiText.GetComponent<UnityEngine.UI.Text>().text = "PLAYing " + ll.Substring(10, ll.Length - 10);
+                    if (Recording && CarType ==  CustomInputController.Controllable.RedBull)
+                    {
+                        uiText.GetComponent<UnityEngine.UI.Text>().text = "Recording RB " + frameCounter;
+                    }
+                    else if (PlayAnimation && CarType == CustomInputController.Controllable.RedBull)
+                    {
+                        uiText.GetComponent<UnityEngine.UI.Text>().text = "PLAYing RB " + ll.Substring(10, ll.Length - 10);
+                    }
+                    else if (CarType == CustomInputController.Controllable.RedBull)
+                    {
+                        uiText.GetComponent<UnityEngine.UI.Text>().text = "RB " + frameCounter.ToString();
+                    }
                 }
                 else
                 {
-                    uiText.GetComponent<UnityEngine.UI.Text>().text = frameCounter.ToString();
+                    if (Recording)
+                    {
+                        uiText.GetComponent<UnityEngine.UI.Text>().text = "Recording Fer " + frameCounter;
+                    }
+                    else if (PlayAnimation)
+                    {
+                        uiText.GetComponent<UnityEngine.UI.Text>().text = "PLAYing Fer " + ll.Substring(10, ll.Length - 10);
+                    }
+                    else
+                    {
+                        uiText.GetComponent<UnityEngine.UI.Text>().text = "Fer " + frameCounter.ToString();
+                    }
                 }
+
+                
 
             
                 
