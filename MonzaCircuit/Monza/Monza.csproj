@@ -343,6 +343,7 @@
     <Compile Include="Assets\CritiasTreeSystem\Code\Utils\TUtils.cs" />
     <Compile Include="Assets\FireWorksTriggerController.cs" />
     <Compile Include="Assets\InputController.cs" />
+    <Compile Include="Assets\MovieCamFPSController.cs" />
     <Compile Include="Assets\RainMaker\Demo\DemoScript.cs" />
     <Compile Include="Assets\RainMaker\Demo\DemoScript2D.cs" />
     <Compile Include="Assets\RainMaker\Demo\DemoScriptStartRainOnSpaceBar.cs" />

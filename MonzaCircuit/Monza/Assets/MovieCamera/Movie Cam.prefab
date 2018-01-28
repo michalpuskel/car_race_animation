@@ -37,6 +37,8 @@ GameObject:
   - component: {fileID: 20438195657064424}
   - component: {fileID: 124578543222686982}
   - component: {fileID: 81513200009551682}
+  - component: {fileID: 114795625489507170}
+  - component: {fileID: 54193742910308792}
   m_Layer: 0
   m_Name: Movie Camera
   m_TagString: MainCamera
@@ -107,6 +109,21 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!54 &54193742910308792
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1372821535731048}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!81 &81513200009551682
 AudioListener:
   m_ObjectHideFlags: 1
@@ -114,6 +131,19 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1372821535731048}
   m_Enabled: 1
+--- !u!114 &114795625489507170
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1372821535731048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f0ed8e7ed27e634b9e571c04a50ec62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveSpeed: 8
+  LookSpeed: 3.5
 --- !u!124 &124578543222686982
 Behaviour:
   m_ObjectHideFlags: 1
