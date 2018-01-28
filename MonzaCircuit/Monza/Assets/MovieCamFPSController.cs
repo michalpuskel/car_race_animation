@@ -15,7 +15,7 @@ public class MovieCamFPSController : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         lookCamera = Quaternion.identity;
 
-        //Cursor.visible = false;
+        Cursor.visible = false;
     }
 	
 	// Update is called once per frame
