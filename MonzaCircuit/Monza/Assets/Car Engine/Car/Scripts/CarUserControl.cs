@@ -103,9 +103,17 @@ namespace CarEngine.Car
 
             m_InputController = (CustomInputController)GameObject.FindGameObjectWithTag("InputController").GetComponent(typeof(CustomInputController));
 
-            m_Camera = Camera.main;
+            // TODO CAM
+
+            
+
+            m_Camera = Camera.main; // koli audiu
+            //m_Camera = GameObject.FindGameObjectWithTag("autokam").GetComponent<Camera>();
             m_OriginalCameraPosition = m_Camera.transform.localPosition;
             m_OriginalCameraRotation = m_Camera.transform.localRotation;
+                //
+
+            
 
             filePath = "log/animation_log_" + CarType + ".txt";
             if (!File.Exists(filePath))
@@ -174,28 +182,39 @@ namespace CarEngine.Car
                     return;
                 }
 
-                if (Input.GetKeyDown("p"))
+            /*
+            if (Input.GetKeyDown("p"))
+            {
+                Recording = !Recording;
+
+                if (!Recording)
                 {
-                    Recording = !Recording;
-
-                    if (!Recording)
-                    {
-                        animation_log.Close();
-                    }
-                    else
-                    {
-                        animation_log = new StreamWriter(filePath, append: true);
-                    }
+                    animation_log.Close();
                 }
-
-                if (Input.GetKeyDown("b"))
+                else
                 {
-                    PlayAnimation = true;
-                    animation_play_log = new StreamReader(filePathPlay);
+                    animation_log = new StreamWriter(filePath, append: true);
                 }
+            }
+            */
 
-                m_Camera.transform.localPosition = m_OriginalCameraPosition;
-                m_Camera.transform.localRotation = m_OriginalCameraRotation;
+
+            /*
+            if (Input.GetKeyDown("b"))
+            {
+                PlayAnimation = true;
+                animation_play_log = new StreamReader(filePathPlay);
+            }
+            */
+
+
+
+                
+                    //TODO CAM
+                    m_Camera.transform.localPosition = m_OriginalCameraPosition;
+                    m_Camera.transform.localRotation = m_OriginalCameraRotation;
+                    //
+                
 
                 // pass the input to the car!
 
@@ -247,11 +266,20 @@ namespace CarEngine.Car
                     }
                     else
                     {
+                        /*
                         h = Input.GetAxis("Horizontal");
                         v = Input.GetAxis("Vertical");
 
                         handbrake = Input.GetAxis("Jump");
-                    }
+                        */
+
+                        // uz nenahravame
+
+                        h = 0;
+                        v = 0;
+
+                        handbrake = 0;
+                }
                 }
                 else
                 {
@@ -291,6 +319,8 @@ namespace CarEngine.Car
                     Debug.Log("Handbrake " + handbrake);
                 }
 
+
+                /*
                 if (NAHRAVANIE_REDBULL)
                 {
                     if (Recording && CarType ==  CustomInputController.Controllable.RedBull)
@@ -321,6 +351,7 @@ namespace CarEngine.Car
                         uiText.GetComponent<UnityEngine.UI.Text>().text = "Fer " + frameCounter.ToString();
                     }
                 }
+                */
 
                 
 

@@ -104,9 +104,9 @@ namespace Scripts
                 InputIndex = Controllable.RedBull;
                 Debug.Log("RedBull");
 
-                FPS.SetActive(false);
-                FerrariCam.SetActive(false);
-                RedBullCam.SetActive(true);
+                //FPS.SetActive(false);
+                //FerrariCam.SetActive(false);
+                //RedBullCam.SetActive(false);
             } 
             else
             {

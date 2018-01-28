@@ -324,6 +324,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\CameraMaster.cs" />
     <Compile Include="Assets\Car Engine\Car\Scripts\BrakeLight.cs" />
     <Compile Include="Assets\Car Engine\Car\Scripts\CarAudio.cs" />
     <Compile Include="Assets\Car Engine\Car\Scripts\CarController.cs" />

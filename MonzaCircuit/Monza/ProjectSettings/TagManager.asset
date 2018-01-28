@@ -16,6 +16,17 @@ TagManager:
   - WaterFX
   - SpeedFX
   - FireWorksMaster
+  - autokam
+  - autokam_1
+  - autokam_2
+  - autokam_3
+  - autokam_4
+  - autokam_5
+  - autokam_6
+  - autokam_7
+  - autokam_8
+  - autokam_9
+  - autokam_0
   layers:
   - Default
   - TransparentFX
