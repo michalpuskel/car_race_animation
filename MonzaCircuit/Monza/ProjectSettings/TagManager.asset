@@ -27,6 +27,7 @@ TagManager:
   - autokam_8
   - autokam_9
   - autokam_0
+  - superRain
   layers:
   - Default
   - TransparentFX
